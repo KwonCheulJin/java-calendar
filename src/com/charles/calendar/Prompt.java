@@ -18,18 +18,25 @@ public class Prompt {
 		printMenu();
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
-		while (true) {
+		boolean isLoop = true;
+		while (isLoop) {
 			System.out.println("입력하세요(1, 2, 3, h, q)");
 			String cmd = scanner.next();
-			if (cmd.equals("1")) {
+			switch (cmd) {
+			case "1":
 				cmdRegister(scanner, cal);
-			} else if (cmd.equals("2")) {
+				break;
+			case "2":
 				cmdSearch(scanner, cal);
-			} else if (cmd.equals("3")) {
+				break;
+			case "3":
 				cmdCalendar(scanner, cal);
-			} else if (cmd.equals("h")) {
+				break;
+			case "h":
 				printMenu();
-			} else if (cmd.equals("q")) {
+				break;
+			case "q":
+				isLoop = false;
 				break;
 			}
 		}
