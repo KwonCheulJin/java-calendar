@@ -37,7 +37,7 @@ public class Prompt {
 		Calendar cal = new Calendar();
 		int month = 1;
 		int year = 2021;
-		int weekday = 0;
+
 		while (true) {
 			System.out.println("년도를 입력하세요.(exit: -1)");
 			System.out.print("YEAR ->");
@@ -50,16 +50,12 @@ public class Prompt {
 			System.out.print("MONTH ->");
 			month = scanner.nextInt();
 
-			System.out.println("첫번째 주의 요일을 입력하세요");
-			System.out.print("WEEKDAY ->");
-			String str_weekday = scanner.next();
-			weekday = getParseDay(str_weekday);
 
 			if (month > 12 || month < 1) {
 				System.out.printf("%d월은 존재하지 않습니다. 다시 입력해주세요\n", month);
 				continue;
 			}
-			cal.printCalendar(year, month, weekday);
+			cal.printCalendar(year, month);
 		}
 		System.out.println("Bye~");
 		scanner.close();
