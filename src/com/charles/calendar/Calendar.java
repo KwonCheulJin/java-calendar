@@ -1,10 +1,37 @@
 package com.charles.calendar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
 public class Calendar {
 
 	private static final int[] MAX_DAYS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LEAP_MAX_DAYS = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	private HashMap<Date, String> planMap;
+	
+	
+	public Calendar() {
+		planMap = new HashMap<Date, String>();
+	}
 
+	/**
+	 * @param date ex: "2021-09-06"
+	 * @param plan
+	 * @throws ParseException 
+	 */
+	public void registerPlan(String inputDate, String plan) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(inputDate);
+		planMap.put(date, plan);
+	}
+	
+	public String searchPlan(String inputDate) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(inputDate);
+		String plan = planMap.get(date);
+		return plan;
+	}
+	
 	public boolean isLeapYear(int year) {
 		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
 			return true;
@@ -73,6 +100,12 @@ public class Calendar {
 		int weekday = (count + STANDARD_WEEKDAY) % 7;
 		
 		return weekday;
+	}
+	
+	public static void main(String[] args) throws ParseException {
+		Calendar cal = new Calendar();
+		cal.registerPlan("2021-09-06", "Let's eat beef");
+		System.out.println(cal.searchPlan("2021-09-06").equals("Let's eat beef"));
 	}
 
 }
